@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://bvkvj2r38d401"]
+
+[ext_resource type="Texture2D" uid="uid://b0sx7byh07h7t" path="res://addons/GodotTogether-main/src/Assets/NPC01/Walk1.PNG" id="1_5w2wa"]
+[ext_resource type="Texture2D" uid="uid://ywtcxc2h50sb" path="res://addons/GodotTogether-main/src/Assets/NPC01/Angry.PNG" id="1_p38s2"]
+[ext_resource type="Texture2D" uid="uid://cid74x1plukht" path="res://addons/GodotTogether-main/src/Assets/NPC01/Walk2.PNG" id="2_lejkk"]
+[ext_resource type="Texture2D" uid="uid://bgcasdvs20qu2" path="res://addons/GodotTogether-main/src/Assets/NPC01/Fallen.PNG" id="2_w6i1v"]
+[ext_resource type="Texture2D" uid="uid://b8h2bdox06wx6" path="res://addons/GodotTogether-main/src/Assets/NPC01/Stand.PNG" id="3_a4j80"]
+[ext_resource type="Texture2D" uid="uid://cagmk4vjcddlf" path="res://addons/GodotTogether-main/src/Assets/NPC01/Walk3.PNG" id="3_d7x6o"]
+[ext_resource type="Texture2D" uid="uid://d3f2p4abmqc52" path="res://addons/GodotTogether-main/src/Assets/NPC01/Walk4.PNG" id="4_p38s2"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bipii"]
+radius = 3.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bipii"]
+size = Vector3(0.1, 2.2, 0.7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w6i1v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p38s2")
+}],
+"loop": true,
+"name": &"NPC01 angry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_w6i1v")
+}],
+"loop": true,
+"name": &"NPC01 fallen",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_a4j80")
+}],
+"loop": true,
+"name": &"NPC01 idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5w2wa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_lejkk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_d7x6o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_p38s2")
+}],
+"loop": true,
+"name": &"NPC01 walk",
+"speed": 6.0
+}]
+
+[node name="NPCbase" type="CharacterBody3D" unique_id=2063977936]
+
+[node name="SocialArea" type="Area3D" parent="." unique_id=1438639629]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SocialArea" unique_id=578286966]
+shape = SubResource("CylinderShape3D_bipii")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=903360973]
+
+[node name="NPCCollision" type="CollisionShape3D" parent="." unique_id=801532331]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05000019, 8.940697e-08)
+shape = SubResource("BoxShape3D_bipii")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1321637491]
+transform = Transform3D(-5.9482446e-09, 0, 1, 0, 0.13552, 0, -0.13607998, 0, -4.371139e-08, 0, 0, 0)
+sprite_frames = SubResource("SpriteFrames_w6i1v")
+animation = &"NPC01 walk"
+frame_progress = 0.9465002

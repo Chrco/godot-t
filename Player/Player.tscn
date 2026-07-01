@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://c36xdbakmjm7x"]
+
+[ext_resource type="Script" uid="uid://b6kpu4tm6t60r" path="res://scripts/player.gd" id="1_3qydi"]
+[ext_resource type="PackedScene" uid="uid://d3stdlfr4wcai" path="res://GUI/info_ui.tscn" id="2_q3lat"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3qydi"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3qydi"]
+
+[node name="Player" type="CharacterBody3D" unique_id=677210946 groups=["Player"]]
+script = ExtResource("1_3qydi")
+info_ui = ExtResource("2_q3lat")
+
+[node name="CameraPivot_TP" type="Node3D" parent="." unique_id=955539470]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, -3.5527137e-15, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="SpringArm" type="SpringArm3D" parent="CameraPivot_TP" unique_id=710103351]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 0, 0, 0)
+spring_length = 8.0
+
+[node name="PlayerCam_TP" type="Camera3D" parent="CameraPivot_TP/SpringArm" unique_id=880340176]
+unique_name_in_owner = true
+
+[node name="CameraPivot_FP" type="Node3D" parent="." unique_id=46958957]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, -3.5527137e-15, 1, 0, 0, 0, 1, 0.6, 0, 0)
+
+[node name="PlayerCam_FP" type="Camera3D" parent="CameraPivot_FP" unique_id=1466768529]
+unique_name_in_owner = true
+transform = Transform3D(-1, 4.2351647e-22, 1.509958e-07, 0, 1, -3.5527135e-15, -1.509958e-07, 3.6705228e-22, -1, 0, 0, 0)
+
+[node name="PlayerCollision" type="CollisionShape3D" parent="." unique_id=431809813]
+unique_name_in_owner = true
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0.20000002, 0)
+shape = SubResource("CapsuleShape3D_3qydi")
+
+[node name="PlayerSkin" type="CSGCombiner3D" parent="." unique_id=1194515900]
+unique_name_in_owner = true
+transform = Transform3D(1.8, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="PlayerSkin" unique_id=636430781]
+transform = Transform3D(0.049503457, -0.06583128, 0.0073402496, 0.05481056, 0.01891011, -0.07344793, 0.0659362, 0.03370536, 0.055543885, 0.3333334, 0.2, 0.25296456)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="PlayerSkin" unique_id=1756950170]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="PlayerSkin/CSGSphere3D" unique_id=1662368950]
+transform = Transform3D(1.1666666, 0, 0, 0, 0.39999998, 0, 0, 0, 1, 0, -0.3, 0)
+operation = 2
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="PlayerSkin" unique_id=1492124298]
+transform = Transform3D(0.07027652, -0.047556505, -0.030367123, -0.06593619, -0.03370536, -0.05554389, 0.022715606, 0.04929227, -0.067277886, 0.3333334, 0.2, -0.3)
+
+[node name="DetectionRange" type="Area3D" parent="." unique_id=860673510]
+unique_name_in_owner = true
+collision_layer = 32768
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionRange" unique_id=38079606]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+shape = SubResource("SphereShape3D_3qydi")
+
+[node name="CarryPoint" type="Marker3D" parent="." unique_id=1725095707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6826968, 0)
+
+[node name="DialogueManager" type="Node" parent="." unique_id=102182591]

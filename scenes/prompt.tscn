@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ck8d0dlolv6yo"]
+
+[sub_resource type="SystemFont" id="SystemFont_bilvo"]
+
+[node name="Node3D" type="Node3D" unique_id=470034461]
+
+[node name="Label3D" type="Label3D" parent="." unique_id=1091661047]
+billboard = 1
+text = "Press \"E\" to pick up
+"
+font = SubResource("SystemFont_bilvo")

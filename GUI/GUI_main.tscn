@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://6apcl5owoqw2"]
+
+[ext_resource type="PackedScene" uid="uid://b1tv1s5h6fdfi" path="res://GUI/dialogue_ui.tscn" id="1_qo7sv"]
+[ext_resource type="PackedScene" uid="uid://ctcpuhh32cqqr" path="res://GUI/PlayerGUI.tscn" id="2_otvud"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1497297180]
+
+[node name="DialogueUI" parent="." unique_id=1501226331 instance=ExtResource("1_qo7sv")]
+
+[node name="PlayerGUI" parent="." unique_id=206778120 instance=ExtResource("2_otvud")]

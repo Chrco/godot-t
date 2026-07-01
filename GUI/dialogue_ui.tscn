@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://b1tv1s5h6fdfi"]
+
+[ext_resource type="Texture2D" uid="uid://bw7jsv8pfu1ck" path="res://addons/GodotTogether-main/src/Assets/NPC01/Stand copy.PNG" id="1_5gxiy"]
+
+[node name="DialogueUI" type="Control" unique_id=1501226331]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="." unique_id=1482248429]
+modulate = Color(0, 0, 0, 0.57254905)
+layout_mode = 0
+offset_right = 1156.0
+offset_bottom = 647.0
+tooltip_text = "
+"
+expand_mode = 1
+
+[node name="Panel" type="Panel" parent="." unique_id=89893949]
+layout_mode = 0
+offset_top = 449.0
+offset_right = 1165.0
+offset_bottom = 657.0
+
+[node name="NPCportrait" type="TextureRect" parent="Panel" unique_id=1149097026]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.56700003
+anchor_top = -1.8100001
+anchor_right = 0.90700006
+anchor_bottom = 0.93200004
+offset_left = 33.444885
+offset_top = 14.47998
+offset_right = 439.34497
+offset_bottom = 351.14398
+scale = Vector2(0.39953268, 0.39827067)
+texture = ExtResource("1_5gxiy")
+
+[node name="NPCname" type="Label" parent="Panel" unique_id=1767603622]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.21700001
+anchor_bottom = 0.24000001
+offset_left = 8.0
+offset_top = -14.0
+offset_right = -53.805008
+offset_bottom = -0.920002
+scale = Vector2(1, 1.0137733)
+
+[node name="DialogueText" type="RichTextLabel" parent="Panel" unique_id=1597153553]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ChoiceContainer" type="VBoxContainer" parent="Panel" unique_id=341232864]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.08800001
+anchor_top = -1.13
+anchor_right = 0.34600002
+anchor_bottom = 0.34600002
+offset_left = 17.479988
+offset_top = 0.039993286
+offset_right = -0.090026855
+offset_bottom = 0.03199768
+
+[node name="TypingMark" type="Label" parent="Panel" unique_id=1072366148]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 212.0
+offset_top = 15.0
+offset_right = -925.0
+offset_bottom = -123.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "▼
+"
+mouse_filter = 0
+text = "▼"
+
+[node name="Audio" type="Node" parent="." unique_id=171490135]

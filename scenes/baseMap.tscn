@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://cxc0f3sr4j53f"]
+
+[ext_resource type="PackedScene" uid="uid://c36xdbakmjm7x" path="res://Player/Player.tscn" id="1_q1pjq"]
+[ext_resource type="PackedScene" uid="uid://c1rjvue6ccoa1" path="res://scenes/npc01.tscn" id="2_hn2dp"]
+[ext_resource type="PackedScene" uid="uid://6apcl5owoqw2" path="res://GUI/GUI_main.tscn" id="3_1qw32"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_42lym"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_h2xap"]
+sky_material = SubResource("ProceduralSkyMaterial_42lym")
+
+[sub_resource type="Environment" id="Environment_wevmb"]
+background_mode = 2
+sky = SubResource("Sky_h2xap")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_h2xap"]
+vertices = PackedVector3Array(0.5, 0.85, 0.5, 0.75, 0.85, -0.25, 0.25, 0.85, -0.5, 0, 0.85, -0.5, -0.5, 0.85, 0.25, -1.75, 0.85, -2, 1.75, 0.85, -11, 3.75, 0.85, -23.75, -23.75, 0.85, -23.75, -23.75, 0.85, -0.5, 1.75, 0.85, -10, 0.25, 0.85, -1.75, -0.25, 0.85, -2, 3.75, 0.85, -12, 1.75, 0.85, -2, 2.75, 0.85, -8.5, -2, 0.85, -0.5, 5.5, 0.85, -9.5, 11.25, 0.85, -7.25, 12.5, 0.85, -7.75, 12.5, 0.85, -23.75, 4.75, 0.85, -11.75, 13.75, 0.85, -7.25, 14.5, 0.85, -6, 24, 0.85, -6, 24, 0.85, -23.75, 10.5, 0.85, -6, 4, 0.85, -8.25, 2.25, 0.85, -1.5, 11.25, 0.85, -4.5, 10.5, 0.85, -5, 12.75, 3.1, -6.5, 12, 3.1, -6.5, 11.75, 3.1, -6, 12.5, 3.1, -5, 13.25, 3.1, -5.75, 13.25, 0.85, -3.75, 2.25, 0.85, 2, 0.75, 0.85, 24, 24, 0.85, 24, 0.5, 0.85, 2.25, -2, 0.85, 2, -23.75, 0.85, 24)
+polygons = [PackedInt32Array(2, 1, 3), PackedInt32Array(3, 1, 0), PackedInt32Array(3, 0, 4), PackedInt32Array(6, 5, 7), PackedInt32Array(7, 5, 9), PackedInt32Array(7, 9, 8), PackedInt32Array(6, 10, 5), PackedInt32Array(2, 3, 11), PackedInt32Array(11, 3, 12), PackedInt32Array(6, 7, 13), PackedInt32Array(11, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(5, 16, 9), PackedInt32Array(12, 5, 15), PackedInt32Array(15, 5, 10), PackedInt32Array(18, 17, 19), PackedInt32Array(19, 17, 21), PackedInt32Array(19, 21, 7), PackedInt32Array(19, 7, 20), PackedInt32Array(21, 13, 7), PackedInt32Array(24, 23, 22), PackedInt32Array(22, 19, 24), PackedInt32Array(24, 19, 20), PackedInt32Array(24, 20, 25), PackedInt32Array(26, 17, 18), PackedInt32Array(14, 15, 28), PackedInt32Array(28, 15, 27), PackedInt32Array(28, 27, 30), PackedInt32Array(28, 30, 29), PackedInt32Array(26, 30, 17), PackedInt32Array(17, 30, 27), PackedInt32Array(32, 31, 33), PackedInt32Array(33, 31, 35), PackedInt32Array(33, 35, 34), PackedInt32Array(24, 36, 23), PackedInt32Array(29, 36, 28), PackedInt32Array(28, 36, 37), PackedInt32Array(36, 24, 37), PackedInt32Array(37, 24, 38), PackedInt32Array(38, 24, 39), PackedInt32Array(38, 40, 37), PackedInt32Array(9, 16, 41), PackedInt32Array(41, 40, 38), PackedInt32Array(9, 41, 42), PackedInt32Array(42, 41, 38)]
+cell_height = 0.75
+
+[sub_resource type="MeshLibrary" id="MeshLibrary_wevmb"]
+
+[node name="base" type="Node3D" unique_id=1174718061]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=220785776]
+environment = SubResource("Environment_wevmb")
+
+[node name="CharacterBody3D" parent="." unique_id=677210946 instance=ExtResource("1_q1pjq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19999981, 0.5, 0)
+
+[node name="EditCam" type="Camera3D" parent="." unique_id=1923690308]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 11.1, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=5065824]
+follow_viewport_enabled = true
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer" unique_id=1321819985]
+size = Vector2i(5000, 5000)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=306142986]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+navigation_mesh = SubResource("NavigationMesh_h2xap")
+
+[node name="GridMap" type="GridMap" parent="NavigationRegion3D" unique_id=202149522]
+mesh_library = SubResource("MeshLibrary_wevmb")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D" unique_id=1698442581]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+collision_layer = 3
+
+[node name="floor" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=807174698]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09999999, 0)
+use_collision = true
+size = Vector3(50, 0.5, 50)
+
+[node name="wall" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=1127635861]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8000002, 0)
+use_collision = true
+size = Vector3(50, 3, 50)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/wall" unique_id=385774941]
+operation = 2
+size = Vector3(49, 3.5, 49)
+
+[node name="ExitPlaceHolder" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=159657474]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09999943, 2.1000001, 0)
+use_collision = true
+size = Vector3(3, 3.5, 3)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="NavigationRegion3D/CSGCombiner3D/ExitPlaceHolder" unique_id=842852928]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -1, -0.9)
+operation = 2
+radius = 1.2
+height = 4.0
+sides = 50
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="NavigationRegion3D/CSGCombiner3D/ExitPlaceHolder" unique_id=1022172176]
+transform = Transform3D(-4.371139e-08, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1, 4.371139e-08, 1.9106855e-15, 0, -1, 0)
+operation = 2
+radius = 1.2
+height = 4.0
+sides = 50
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="NavigationRegion3D/CSGCombiner3D/ExitPlaceHolder" unique_id=1452666389]
+transform = Transform3D(1.9106857e-15, -8.742278e-08, 1, 4.371139e-08, -1, -8.742278e-08, 1, 4.371139e-08, 1.9106855e-15, 0, 1, 0)
+operation = 2
+radius = 1.2
+height = 4.0
+sides = 50
+
+[node name="slope" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=1132434353]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 3.6000001, 1.3, -10.1)
+size = Vector3(2, 2, 2)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/slope" unique_id=2024435090]
+transform = Transform3D(0.59092915, 0.7879291, 0, -0.59092915, 0.7879291, 0, 0, 0, 2.5, -0.7053144, 0.5265218, 0)
+operation = 2
+size = Vector3(1.9, 4.7000003, 1)
+
+[node name="box" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=217661148]
+transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 12.5, 1.3, -5.8)
+size = Vector3(2, 2, 2)
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="NavigationRegion3D" unique_id=952526581]
+height = 2.0
+vertices = PackedVector3Array(11.900001, 0, -7.3, 11, 0, -5.5, 12.900001, 0, -4.4, 13.900001, 0, -6.2000003)
+
+[node name="NPC" parent="NavigationRegion3D" unique_id=2063977936 instance=ExtResource("2_hn2dp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.900001, 1.1, 0)
+
+[node name="Pos" type="Node3D" parent="." unique_id=605693604]
+
+[node name="Marker3D" type="Marker3D" parent="Pos" unique_id=721054915 groups=["Base_pos"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4, 1.1000001, 0)
+
+[node name="Marker3D2" type="Marker3D" parent="Pos" unique_id=1387281401 groups=["Base_pos"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2, 1.5999999, -10.700001)
+
+[node name="Marker3D3" type="Marker3D" parent="Pos" unique_id=1003534217 groups=["Base_pos"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7, 1.4000001, -3.9000003)
+
+[node name="Marker3D4" type="Marker3D" parent="Pos" unique_id=329015932 groups=["Base_pos"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8, 1, 15.699999)
+
+[node name="Marker3D5" type="Marker3D" parent="Pos" unique_id=2063102294 groups=["Base_pos"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1000004, 1.2, 7.7999988)
+
+[node name="GUI_main" parent="." unique_id=1497297180 instance=ExtResource("3_1qw32")]
+visible = false

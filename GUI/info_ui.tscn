@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://d3stdlfr4wcai"]
+
+[ext_resource type="Script" uid="uid://rlkh3nd4ox6l" path="res://GUI/info_ui.gd" id="1_xsmkp"]
+
+[node name="Info" type="Control" unique_id=988190610]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_xsmkp")
+
+[node name="Panel" type="Panel" parent="." unique_id=750632529]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.30400002
+anchor_bottom = 0.16700001
+offset_right = -22.208008
+offset_bottom = 155.784
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="Panel" unique_id=353134423]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 167.0
+offset_bottom = 73.0
+scale = Vector2(1.9200001, 1)
+
+[node name="HP" type="ProgressBar" parent="Panel" unique_id=1270776008]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 25)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 85.0
+offset_right = 1448.1753
+offset_bottom = 1305.687
+scale = Vector2(0.21068363, 0.045875803)
+mouse_filter = 2
