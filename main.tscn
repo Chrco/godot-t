@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://156emsumjl2r"]
+
+[ext_resource type="PackedScene" uid="uid://cxc0f3sr4j53f" path="res://scenes/baseMap.tscn" id="1_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://b1tv1s5h6fdfi" path="res://GUI/dialogue_ui.tscn" id="2_lquwl"]
+[ext_resource type="PackedScene" uid="uid://c36xdbakmjm7x" path="res://Player/Player.tscn" id="4_272bh"]
+[ext_resource type="Script" uid="uid://c53tg05htlije" path="res://player_gui.gd" id="4_lquwl"]
+[ext_resource type="Texture2D" uid="uid://b7ie4rbhey80i" path="res://img/visible.svg" id="5_7mycd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
+bg_color = Color(0.81, 0.314, 0.168, 1)
+
+[node name="Main" type="Node" unique_id=1547316097]
+
+[node name="CurrentMap" type="Node" parent="." unique_id=1271842197]
+
+[node name="base" parent="CurrentMap" unique_id=1174718061 instance=ExtResource("1_1bvp3")]
+
+[node name="GUIs" type="CanvasLayer" parent="." unique_id=718057700]
+
+[node name="DialogueUI" parent="GUIs" unique_id=1501226331 instance=ExtResource("2_lquwl")]
+visible = false
+
+[node name="Player" parent="." unique_id=677210946 instance=ExtResource("4_272bh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19999981, 0.5, 0)
+
+[node name="Audio" type="Node" parent="." unique_id=1383883064]
+
+[node name="PlayerGUI" type="CanvasLayer" parent="." unique_id=2056189754]
+script = ExtResource("4_lquwl")
+
+[node name="Control" type="Control" parent="PlayerGUI" unique_id=924341004]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Crosshair" type="TextureRect" parent="PlayerGUI/Control" unique_id=1231980137]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 561.0
+offset_top = 309.0
+offset_right = 537.0
+offset_bottom = 285.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_7mycd")
+
+[node name="StageTimer" type="ProgressBar" parent="PlayerGUI/Control" unique_id=1230943624]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.008
+anchor_top = -0.024
+anchor_right = 15.161
+anchor_bottom = 2.4510002
+offset_left = 12.32
+offset_top = 14.96
+offset_right = -42.440002
+offset_bottom = -36.04001
+theme_override_styles/fill = SubResource("StyleBoxFlat_lquwl")
+
+[node name="HpBar" type="ProgressBar" parent="PlayerGUI/Control" unique_id=1688132724]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.08800001
+anchor_right = 9.7890005
+anchor_bottom = 4.201
+offset_left = 12.0
+offset_top = 82.48
+offset_right = -198.56003
+offset_bottom = -53.102997
+
+[node name="HpBar2" type="ProgressBar" parent="PlayerGUI/Control" unique_id=381226232]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.08800001
+anchor_right = 12.070001
+anchor_bottom = 3.6690001
+offset_left = 219.0
+offset_top = 82.48
+offset_right = -87.80002
+offset_bottom = -33.76001
+
+[node name="CycleLabel" type="Label" parent="PlayerGUI/Control" unique_id=1674002540]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 13.449
+anchor_top = 0.35000002
+anchor_right = 16.86
+anchor_bottom = 3.2670002
+offset_left = 37.039978
+offset_right = -81.400024
+offset_bottom = -23.680008
+theme_override_font_sizes/font_size = 32
+text = "0
+"

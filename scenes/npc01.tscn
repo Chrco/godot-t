@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://c1rjvue6ccoa1"]
 
-[ext_resource type="Texture2D" uid="uid://ywtcxc2h50sb" path="res://addons/GodotTogether-main/src/Assets/NPC01/Angry.PNG" id="1_r0va4"]
+[ext_resource type="Texture2D" uid="uid://ywtcxc2h50sb" path="res://Assets/NPC01/Angry.PNG" id="1_r0va4"]
 [ext_resource type="Script" uid="uid://b7mi4ud7tj08x" path="res://scripts/npc_01_move.gd" id="1_vymfk"]
-[ext_resource type="Texture2D" uid="uid://bgcasdvs20qu2" path="res://addons/GodotTogether-main/src/Assets/NPC01/Fallen.PNG" id="2_vymfk"]
-[ext_resource type="Texture2D" uid="uid://b8h2bdox06wx6" path="res://addons/GodotTogether-main/src/Assets/NPC01/Stand.PNG" id="3_7le6o"]
-[ext_resource type="Texture2D" uid="uid://b0sx7byh07h7t" path="res://addons/GodotTogether-main/src/Assets/NPC01/Walk1.PNG" id="4_43rdf"]
-[ext_resource type="Texture2D" uid="uid://cid74x1plukht" path="res://addons/GodotTogether-main/src/Assets/NPC01/Walk2.PNG" id="5_6335u"]
-[ext_resource type="Texture2D" uid="uid://cagmk4vjcddlf" path="res://addons/GodotTogether-main/src/Assets/NPC01/Walk3.PNG" id="6_vgcgu"]
-[ext_resource type="Texture2D" uid="uid://d3f2p4abmqc52" path="res://addons/GodotTogether-main/src/Assets/NPC01/Walk4.PNG" id="7_hwmyy"]
+[ext_resource type="Texture2D" uid="uid://bgcasdvs20qu2" path="res://Assets/NPC01/Fallen.PNG" id="2_vymfk"]
+[ext_resource type="Texture2D" uid="uid://b8h2bdox06wx6" path="res://Assets/NPC01/Stand.PNG" id="3_7le6o"]
+[ext_resource type="Texture2D" uid="uid://b0sx7byh07h7t" path="res://Assets/NPC01/Walk1.PNG" id="4_43rdf"]
+[ext_resource type="Texture2D" uid="uid://cid74x1plukht" path="res://Assets/NPC01/Walk2.PNG" id="5_6335u"]
+[ext_resource type="Texture2D" uid="uid://cagmk4vjcddlf" path="res://Assets/NPC01/Walk3.PNG" id="6_vgcgu"]
+[ext_resource type="Texture2D" uid="uid://d3f2p4abmqc52" path="res://Assets/NPC01/Walk4.PNG" id="7_hwmyy"]
+[ext_resource type="Script" uid="uid://do72q1wpcjjwf" path="res://scenes/dialogue_NPC01.gd" id="9_323py"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bipii"]
 size = Vector3(0.1, 2.2, 0.7)
@@ -108,3 +109,5 @@ text = "Press \"E\" to pick up
 font = SubResource("SystemFont_vymfk")
 
 [node name="DialogueData" type="Node" parent="." unique_id=553384019]
+unique_name_in_owner = true
+script = ExtResource("9_323py")

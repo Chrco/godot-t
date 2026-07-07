@@ -32,6 +32,7 @@ var _player_cam: Camera3D
 @onready var _player_collision:CollisionShape3D  = %PlayerCollision
 @onready var _spring_arm:SpringArm3D = %SpringArm
 @onready var _detection_area:Area3D = %DetectionRange
+@onready var dialogue_ui = get_tree().current_scene.get_node("GUIs/DialogueUI")
 
 @export_group("UI")
 @export var info_ui : PackedScene
@@ -42,6 +43,7 @@ var aimed_target = null
 var closest_entity = null
 var current_target = null
 var current_ui = null
+var in_dialogue = false
 	
 func _on_detection_area_body_entered(body):
 	if body.is_in_group("NPC"):
@@ -49,6 +51,15 @@ func _on_detection_area_body_entered(body):
 func _on_detection_area_body_exited(body):
 	if body.is_in_group("NPC"):
 		nearby_NPCs.erase(body)
+		
+func _on_dialogue_started():
+	in_dialogue = true
+	if current_target:
+		current_target.start_interaction(self)
+func _on_dialogue_ended():
+	in_dialogue = false
+	if current_target:
+		current_target.stop_interaction()
 
 func _ready() -> void:
 	_player_skin.visible = false
@@ -57,12 +68,22 @@ func _ready() -> void:
 
 	_player_cam_fp.current = true
 	_player_cam_tp.current = false
+	
+	dialogue_ui.dialogue_start.connect(_on_dialogue_started)
+	dialogue_ui.dialogue_ended.connect(_on_dialogue_ended)
 
 func _input(event: InputEvent) -> void: #auto, runs after every input 
 	if event.is_action_pressed("right_click"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED #cursor hidden + locked 
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE #normal 
+		
+	if event.is_action_pressed("x"):
+		if current_target and current_ui:
+			dialogue_ui.start_dialogue(current_target)
+			current_target.start_interaction(self)
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		
 		
 	if event.is_action_pressed("v"):
 		_first_person = !_first_person
@@ -84,6 +105,8 @@ func _input(event: InputEvent) -> void: #auto, runs after every input
 	
 
 func _unhandled_input(event: InputEvent) -> void: #auto, process input after normal UI
+	if in_dialogue == true:
+		return
 	var is_camera_motion := ( #ingame and mouse move
 		event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
 	)
@@ -102,6 +125,7 @@ func _unhandled_input(event: InputEvent) -> void: #auto, process input after nor
 		
 func _physics_process(delta:float) -> void: #auto, every physics frame 
 	#delta = 1/fps
+	
 	_camera_pivot.rotation.x += _camera_input_direction.y * delta
 	_camera_pivot.rotation.x = clamp(_camera_pivot.rotation.x, -PI/6.0, PI/2.0)
 	

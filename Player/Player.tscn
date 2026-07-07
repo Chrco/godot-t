@@ -63,5 +63,3 @@ shape = SubResource("SphereShape3D_3qydi")
 
 [node name="CarryPoint" type="Marker3D" parent="." unique_id=1725095707]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6826968, 0)
-
-[node name="DialogueManager" type="Node" parent="." unique_id=102182591]

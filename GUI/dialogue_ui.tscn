@@ -1,18 +1,32 @@
 [gd_scene format=3 uid="uid://b1tv1s5h6fdfi"]
 
-[ext_resource type="Texture2D" uid="uid://bw7jsv8pfu1ck" path="res://addons/GodotTogether-main/src/Assets/NPC01/Stand copy.PNG" id="1_5gxiy"]
+[ext_resource type="Script" uid="uid://dmmixkin6xfib" path="res://GUI/dialogue_ui.gd" id="1_1u5s6"]
+[ext_resource type="Texture2D" uid="uid://bw7jsv8pfu1ck" path="res://Assets/NPC01/Stand copy.PNG" id="1_5gxiy"]
+[ext_resource type="Texture2D" uid="uid://b7ie4rbhey80i" path="res://img/visible.svg" id="3_mno6o"]
+[ext_resource type="Texture2D" uid="uid://bsgcxdfojdd82" path="res://img/hidden.svg" id="4_b3x3j"]
 
 [node name="DialogueUI" type="Control" unique_id=1501226331]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1152.0
-offset_bottom = -648.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_1u5s6")
+metadata/_edit_use_anchors_ = true
 
 [node name="Background" type="TextureRect" parent="." unique_id=1482248429]
+modulate = Color(0, 0, 0, 0.57254905)
+layout_mode = 0
+offset_right = 1156.0
+offset_bottom = 647.0
+tooltip_text = "
+"
+expand_mode = 1
+
+[node name="Overlay" type="TextureRect" parent="." unique_id=1912314578]
 modulate = Color(0, 0, 0, 0.57254905)
 layout_mode = 0
 offset_right = 1156.0
@@ -28,6 +42,7 @@ offset_right = 1165.0
 offset_bottom = 657.0
 
 [node name="NPCportrait" type="TextureRect" parent="Panel" unique_id=1149097026]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.56700003
@@ -42,6 +57,7 @@ scale = Vector2(0.39953268, 0.39827067)
 texture = ExtResource("1_5gxiy")
 
 [node name="NPCname" type="Label" parent="Panel" unique_id=1767603622]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.21700001
@@ -53,11 +69,18 @@ offset_bottom = -0.920002
 scale = Vector2(1, 1.0137733)
 
 [node name="DialogueText" type="RichTextLabel" parent="Panel" unique_id=1597153553]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.975
+anchor_bottom = 0.897
+offset_left = 90.0
+offset_right = -17.875
+offset_bottom = -23.576004
+theme_override_font_sizes/normal_font_size = 24
 
 [node name="ChoiceContainer" type="VBoxContainer" parent="Panel" unique_id=341232864]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.08800001
@@ -70,6 +93,7 @@ offset_right = -0.090026855
 offset_bottom = 0.03199768
 
 [node name="TypingMark" type="Label" parent="Panel" unique_id=1072366148]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -85,4 +109,23 @@ tooltip_text = "▼
 mouse_filter = 0
 text = "▼"
 
-[node name="Audio" type="Node" parent="." unique_id=171490135]
+[node name="Autoplay" type="TextureButton" parent="Panel" unique_id=2012865094]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.689
+anchor_top = -2.118
+anchor_right = 0.97800004
+anchor_bottom = -1.794
+offset_left = 177.315
+offset_top = 11.544006
+offset_right = -106.369995
+offset_bottom = -0.84799194
+toggle_mode = true
+texture_normal = ExtResource("3_mno6o")
+texture_pressed = ExtResource("4_b3x3j")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=868520979]
+unique_name_in_owner = true

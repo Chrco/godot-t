@@ -2,6 +2,27 @@
 
 [ext_resource type="Script" uid="uid://rlkh3nd4ox6l" path="res://GUI/info_ui.gd" id="1_xsmkp"]
 
+[sub_resource type="FontFile" id="FontFile_xsmkp"]
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/20/0/ascent = 0.0
+cache/0/20/0/descent = 0.0
+cache/0/20/0/underline_position = 0.0
+cache/0/20/0/underline_thickness = 0.0
+cache/0/20/0/scale = 1.0
+
 [node name="Info" type="Control" unique_id=988190610]
 layout_mode = 3
 anchors_preset = 15
@@ -15,10 +36,10 @@ script = ExtResource("1_xsmkp")
 [node name="Panel" type="Panel" parent="." unique_id=750632529]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.30400002
-anchor_bottom = 0.16700001
-offset_right = -22.208008
-offset_bottom = 155.784
+anchor_right = 0.24700001
+anchor_bottom = 0.45800003
+offset_right = -0.54400635
+offset_bottom = 0.2159729
 mouse_filter = 2
 
 [node name="Name" type="Label" parent="Panel" unique_id=353134423]
@@ -27,6 +48,8 @@ layout_mode = 0
 offset_right = 167.0
 offset_bottom = 73.0
 scale = Vector2(1.9200001, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 26
 
 [node name="HP" type="ProgressBar" parent="Panel" unique_id=1270776008]
 unique_name_in_owner = true
@@ -34,7 +57,23 @@ custom_minimum_size = Vector2(180, 25)
 layout_mode = 0
 offset_left = 10.0
 offset_top = 85.0
-offset_right = 1448.1753
+offset_right = 1272.5566
 offset_bottom = 1305.687
 scale = Vector2(0.21068363, 0.045875803)
 mouse_filter = 2
+
+[node name="Label" type="Label" parent="Panel" unique_id=1877249881]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 251.0
+offset_right = 279.0
+offset_bottom = 293.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = SubResource("FontFile_xsmkp")
+theme_override_font_sizes/font_size = 20
+text = "Press \"X\" to interact"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_trim_flags = 128

@@ -1,8 +1,6 @@
 [gd_scene format=3 uid="uid://cxc0f3sr4j53f"]
 
-[ext_resource type="PackedScene" uid="uid://c36xdbakmjm7x" path="res://Player/Player.tscn" id="1_q1pjq"]
 [ext_resource type="PackedScene" uid="uid://c1rjvue6ccoa1" path="res://scenes/npc01.tscn" id="2_hn2dp"]
-[ext_resource type="PackedScene" uid="uid://6apcl5owoqw2" path="res://GUI/GUI_main.tscn" id="3_1qw32"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_42lym"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -28,9 +26,6 @@ cell_height = 0.75
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=220785776]
 environment = SubResource("Environment_wevmb")
-
-[node name="CharacterBody3D" parent="." unique_id=677210946 instance=ExtResource("1_q1pjq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19999981, 0.5, 0)
 
 [node name="EditCam" type="Camera3D" parent="." unique_id=1923690308]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 11.1, 0)
@@ -129,6 +124,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8, 1, 15.699999)
 
 [node name="Marker3D5" type="Marker3D" parent="Pos" unique_id=2063102294 groups=["Base_pos"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1000004, 1.2, 7.7999988)
-
-[node name="GUI_main" parent="." unique_id=1497297180 instance=ExtResource("3_1qw32")]
-visible = false

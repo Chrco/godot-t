@@ -9,7 +9,14 @@ extends CharacterBody3D
 var movement_velocity := Vector3.ZERO
 var knockback_velocity := Vector3.ZERO
 
+@export_group("metadata")
+@export var NPC_name := "Eld"
+@export var maxHP := 130
+@export var HP := 130
+@export var InteractionNo = 0
+@export var TaskNo = 0
 
+@onready var dialogue = $DialogueData
 @onready var UI_anchor = %UIanchor
 @onready var Pickup_prompt = %PickupPrompt.get_node("Label3D")
 @onready var navigation_agent: NavigationAgent3D = %NavigationAgent3D
@@ -26,6 +33,7 @@ var nearby_player = []
 var nearby_NPCs = []
 var player_in_range := false
 var carried_by = null
+var interaction_target = null
 
 func _on_detection_area_body_entered(body):
 	if body.is_in_group("NPC") and body != self:
@@ -70,9 +78,9 @@ func _physics_process(delta: float) -> void: #auto, every physics frame
 				face_target(closest_entity.global_position,delta)
 			idle_timer -= delta
 			if idle_timer <= 0:
-				navigation_agent.target_position = get_random_target()
 				state = STATE.WALKING
-			
+				navigation_agent.target_position = get_random_target()
+				
 			
 		STATE.WALKING:
 			animation()
@@ -100,6 +108,15 @@ func _physics_process(delta: float) -> void: #auto, every physics frame
 			movement_velocity = Vector3.ZERO
 			velocity = Vector3.ZERO
 			return
+			
+		STATE.INTERACTION:
+			animation()
+
+			movement_velocity = Vector3.ZERO
+			velocity = Vector3.ZERO
+
+			if interaction_target:
+				face_target(interaction_target.global_position, delta)
 
 			
 	velocity = movement_velocity + knockback_velocity
@@ -119,6 +136,9 @@ func _physics_process(delta: float) -> void: #auto, every physics frame
 	
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
+		
+		if state == STATE.CARRIED and collision.get_collider() == carried_by:
+			continue
 		if collision.get_collider() is CharacterBody3D:
 			#add pushback physics
 			var dir = (global_position - collision.get_collider().global_position).normalized()
@@ -131,7 +151,7 @@ func _physics_process(delta: float) -> void: #auto, every physics frame
 				collider.apply_knockback(-dir * 0.5)
 			
 			var impact_speed = collision.get_collider().velocity.length()
-			if impact_speed > 6.0 and state != STATE.FALLEN:
+			if impact_speed > 7.0 and state != STATE.FALLEN and state != STATE.CARRIED:
 				fall()
 	
 			
@@ -148,6 +168,8 @@ func animation():
 			Sprite.play("NPC01 walk")
 		STATE.CARRIED:
 			Sprite.play("NPC01 fallen")
+		STATE.INTERACTION:
+			Sprite.play("NPC01 idle")
 			
 func fall():
 	if state == STATE.FALLEN:
@@ -220,28 +242,27 @@ func stop_carry():
 	Detection_area.monitoring = true
 
 	global_position = carried_by.global_position \
-		- carried_by.global_basis.z * 2.0 \
-		+ Vector3.UP * 0.5
+		- carried_by.global_basis.z * 1.0 \
+		+ Vector3.UP * 1
 
 	velocity = carried_by.velocity
 	movement_velocity = Vector3.ZERO
 	knockback_velocity = Vector3.ZERO
 
-	state = STATE.IDLE
 	carried_by = null
+	state = STATE.IDLE
 
 
+func start_interaction(player):
+	interaction_target = player
+	state = STATE.INTERACTION
 
-@export_group("metadata")
-@export var NPC_name := "Eld"
-@export var maxHP := 130
-@export var HP := 130
-@export var InteractionNo = 0
-@export var TaskNo = 0
+	velocity = Vector3.ZERO
+	movement_velocity = Vector3.ZERO
+	navigation_agent.target_position = global_position
+	
+func stop_interaction():
+	interaction_target = null
 
-
-func interaction():
-	InteractionNo += 1 
-	match InteractionNo:
-		1:
-			pass
+	state = STATE.IDLE
+	idle_timer = randf_range(2.0, 5.0)
