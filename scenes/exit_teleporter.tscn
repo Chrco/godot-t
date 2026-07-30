@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cgbrs3vruptua"]
+
+[ext_resource type="Script" uid="uid://bwrpp20vt5m2b" path="res://scenes/exit_teleporter.gd" id="1_dm6it"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hn2dp"]
+height = 2.5
+
+[node name="ExitTeleporter" type="Area3D" unique_id=1213201989]
+script = ExtResource("1_dm6it")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1099835175]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 3.05, 0)
+shape = SubResource("CylinderShape3D_hn2dp")

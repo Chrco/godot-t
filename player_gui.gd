@@ -14,7 +14,6 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	print(WorldManager.stage)
 	StageTimer.max_value = WorldManager.cycle_duration
 	StageTimer.value = WorldManager.world_time
 

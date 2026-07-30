@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c1rjvue6ccoa1"]
 
 [ext_resource type="Texture2D" uid="uid://ywtcxc2h50sb" path="res://Assets/NPC01/Angry.PNG" id="1_r0va4"]
-[ext_resource type="Script" uid="uid://b7mi4ud7tj08x" path="res://scripts/npc_01_move.gd" id="1_vymfk"]
+[ext_resource type="Script" uid="uid://b7mi4ud7tj08x" path="res://scripts/npc_move.gd" id="1_vymfk"]
 [ext_resource type="Texture2D" uid="uid://bgcasdvs20qu2" path="res://Assets/NPC01/Fallen.PNG" id="2_vymfk"]
 [ext_resource type="Texture2D" uid="uid://b8h2bdox06wx6" path="res://Assets/NPC01/Stand.PNG" id="3_7le6o"]
 [ext_resource type="Texture2D" uid="uid://b0sx7byh07h7t" path="res://Assets/NPC01/Walk1.PNG" id="4_43rdf"]
@@ -20,7 +20,7 @@ animations = [{
 "texture": ExtResource("1_r0va4")
 }],
 "loop": true,
-"name": &"NPC01 angry",
+"name": &"Eldridge angry",
 "speed": 5.0
 }, {
 "frames": [{
@@ -28,7 +28,7 @@ animations = [{
 "texture": ExtResource("2_vymfk")
 }],
 "loop": true,
-"name": &"NPC01 fallen",
+"name": &"Eldridge fallen",
 "speed": 5.0
 }, {
 "frames": [{
@@ -36,7 +36,7 @@ animations = [{
 "texture": ExtResource("3_7le6o")
 }],
 "loop": true,
-"name": &"NPC01 idle",
+"name": &"Eldridge idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -53,7 +53,7 @@ animations = [{
 "texture": ExtResource("7_hwmyy")
 }],
 "loop": true,
-"name": &"NPC01 walk",
+"name": &"Eldridge walk",
 "speed": 6.0
 }]
 
@@ -80,8 +80,7 @@ debug_enabled = true
 unique_name_in_owner = true
 transform = Transform3D(-5.9482446e-09, 0, 1, 0, 0.13552, 0, -0.13607998, 0, -4.371139e-08, 0, 0, 0)
 sprite_frames = SubResource("SpriteFrames_w6i1v")
-animation = &"NPC01 walk"
-frame_progress = 0.64596516
+animation = &"Eldridge walk"
 
 [node name="DetectionRange" type="Area3D" parent="." unique_id=1438639629]
 unique_name_in_owner = true
@@ -104,7 +103,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 [node name="Label3D" type="Label3D" parent="PickupPrompt" unique_id=122244994]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 billboard = 1
-text = "Press \"E\" to pick up
+text = "Press \"Q\" to pick up
 "
 font = SubResource("SystemFont_vymfk")
 

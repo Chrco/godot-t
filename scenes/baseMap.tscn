@@ -1,19 +1,7 @@
 [gd_scene format=3 uid="uid://cxc0f3sr4j53f"]
 
 [ext_resource type="PackedScene" uid="uid://c1rjvue6ccoa1" path="res://scenes/npc01.tscn" id="2_hn2dp"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_42lym"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
-[sub_resource type="Sky" id="Sky_h2xap"]
-sky_material = SubResource("ProceduralSkyMaterial_42lym")
-
-[sub_resource type="Environment" id="Environment_wevmb"]
-background_mode = 2
-sky = SubResource("Sky_h2xap")
-tonemap_mode = 2
-glow_enabled = true
+[ext_resource type="PackedScene" uid="uid://cgbrs3vruptua" path="res://scenes/exit_teleporter.tscn" id="2_sdsdw"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_h2xap"]
 vertices = PackedVector3Array(0.5, 0.85, 0.5, 0.75, 0.85, -0.25, 0.25, 0.85, -0.5, 0, 0.85, -0.5, -0.5, 0.85, 0.25, -1.75, 0.85, -2, 1.75, 0.85, -11, 3.75, 0.85, -23.75, -23.75, 0.85, -23.75, -23.75, 0.85, -0.5, 1.75, 0.85, -10, 0.25, 0.85, -1.75, -0.25, 0.85, -2, 3.75, 0.85, -12, 1.75, 0.85, -2, 2.75, 0.85, -8.5, -2, 0.85, -0.5, 5.5, 0.85, -9.5, 11.25, 0.85, -7.25, 12.5, 0.85, -7.75, 12.5, 0.85, -23.75, 4.75, 0.85, -11.75, 13.75, 0.85, -7.25, 14.5, 0.85, -6, 24, 0.85, -6, 24, 0.85, -23.75, 10.5, 0.85, -6, 4, 0.85, -8.25, 2.25, 0.85, -1.5, 11.25, 0.85, -4.5, 10.5, 0.85, -5, 12.75, 3.1, -6.5, 12, 3.1, -6.5, 11.75, 3.1, -6, 12.5, 3.1, -5, 13.25, 3.1, -5.75, 13.25, 0.85, -3.75, 2.25, 0.85, 2, 0.75, 0.85, 24, 24, 0.85, 24, 0.5, 0.85, 2.25, -2, 0.85, 2, -23.75, 0.85, 24)
@@ -23,9 +11,6 @@ cell_height = 0.75
 [sub_resource type="MeshLibrary" id="MeshLibrary_wevmb"]
 
 [node name="base" type="Node3D" unique_id=1174718061]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=220785776]
-environment = SubResource("Environment_wevmb")
 
 [node name="EditCam" type="Camera3D" parent="." unique_id=1923690308]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 11.1, 0)
@@ -102,10 +87,11 @@ transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 12.5, 1.
 size = Vector3(2, 2, 2)
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="NavigationRegion3D" unique_id=952526581]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19999999, 0)
 height = 2.0
 vertices = PackedVector3Array(11.900001, 0, -7.3, 11, 0, -5.5, 12.900001, 0, -4.4, 13.900001, 0, -6.2000003)
 
-[node name="NPC" parent="NavigationRegion3D" unique_id=2063977936 instance=ExtResource("2_hn2dp")]
+[node name="npc01" parent="NavigationRegion3D" unique_id=2063977936 instance=ExtResource("2_hn2dp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.900001, 1.1, 0)
 
 [node name="Pos" type="Node3D" parent="." unique_id=605693604]
@@ -124,3 +110,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8, 1, 15.699999)
 
 [node name="Marker3D5" type="Marker3D" parent="Pos" unique_id=2063102294 groups=["Base_pos"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1000004, 1.2, 7.7999988)
+
+[node name="SpawnPoint" type="Marker3D" parent="." unique_id=618571524]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+
+[node name="ExitTeleporter" parent="." unique_id=1213201989 instance=ExtResource("2_sdsdw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 0

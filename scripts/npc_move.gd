@@ -10,11 +10,12 @@ var movement_velocity := Vector3.ZERO
 var knockback_velocity := Vector3.ZERO
 
 @export_group("metadata")
-@export var NPC_name := "Eld"
+@export var NPC_name := "Eldridge"
 @export var maxHP := 130
 @export var HP := 130
 @export var InteractionNo = 0
 @export var TaskNo = 0
+@export var Location := "base"
 
 @onready var dialogue = $DialogueData
 @onready var UI_anchor = %UIanchor
@@ -54,7 +55,7 @@ var idle_timer = 0.0
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("e"):
+	if event.is_action_pressed("q"):
 		if !nearby_player.is_empty() and state != STATE.CARRIED:
 			start_carry(_get_closest_entity())
 		elif state == STATE.CARRIED:
@@ -161,15 +162,20 @@ func get_random_target():
 	return target_point.global_position
 
 func animation():
+	var animation_name
 	match state:
 		STATE.IDLE:
-			Sprite.play("NPC01 idle")
+			animation_name = NPC_name + " idle"
 		STATE.WALKING:
-			Sprite.play("NPC01 walk")
+			animation_name = NPC_name + " walk"
 		STATE.CARRIED:
-			Sprite.play("NPC01 fallen")
+			animation_name = NPC_name + " fallen"
+		STATE.FALLEN:
+			animation_name = NPC_name + " fallen"
 		STATE.INTERACTION:
-			Sprite.play("NPC01 idle")
+			animation_name = NPC_name + " idle"
+			
+	Sprite.play(animation_name)
 			
 func fall():
 	if state == STATE.FALLEN:
@@ -177,7 +183,7 @@ func fall():
 
 	state = STATE.FALLEN
 	velocity = Vector3.ZERO
-	Sprite.play("NPC01 fallen")
+	animation()
 	if state != STATE.CARRIED:
 		stand_up()
 
@@ -203,7 +209,8 @@ func _get_closest_entity(): #pioritize playere
 		
 func stand_up():
 	await get_tree().create_timer(2.5).timeout 
-	Sprite.play("NPC01 angry")
+	var animation_name = NPC_name + " angry"
+	Sprite.play(animation_name)
 	await get_tree().create_timer(1.0).timeout 
 	state = STATE.IDLE
 	

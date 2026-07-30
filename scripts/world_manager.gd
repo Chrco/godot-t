@@ -8,17 +8,21 @@ var world_time := 0.0
 @export var stage1_duration := 10.0
 @export var stage2_duration := 15.0
 @export var stage3_duration := 20.0
-var cycle_duration = stage1_duration + stage2_duration + stage3_duration
+var cycle_duration 
 
 const MAPS = [
 	preload("res://scenes/maps/map_1.tscn"),
 	preload("res://scenes/maps/map_2.tscn")
-   ]
+]
+var current_map : Node
+var current_map_scene : PackedScene
+ 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	cycle_duration = stage1_duration + stage2_duration + stage3_duration
+	current_map_scene = MAPS.pick_random()
+	print(current_map_scene)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -28,8 +32,12 @@ func _process(delta: float) -> void:
 		stage = 2
 	elif stage == 2 and world_time >= stage2_duration + stage1_duration:
 		stage = 3
-	elif stage == 3 and world_time >= stage3_duration + stage2_duration + stage1_duration:
+	elif stage == 3 and cycle < 50 and world_time >= stage3_duration + stage2_duration + stage1_duration:
 		stage = 1
 		world_time = 0.0
 		cycle += 1 
+		current_map_scene = MAPS.pick_random()
+		print(current_map_scene)
 		
+	if cycle == 50 :
+		stage = 4

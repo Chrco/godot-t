@@ -80,19 +80,8 @@ func run(dialogue_manager):
 				
 			InteractionNo += 1
 			
-		3:
-			playerchoice = await dialogue_manager.show_choices([
-				"Eldridge"
-			])
-			await dialogue_manager.speak(
-				"good name,", portrait_expressionless, 1
-			)
-			await dialogue_manager.speak(
-				"whoever came up with it.", portrait_expressionless, 2
-			)
-			InteractionNo += 1
 			
-		4:
+		3:
 			await dialogue_manager.speak(
 				"where did the other guy go?", portrait_expressionless, 1
 			)
@@ -121,7 +110,7 @@ func run(dialogue_manager):
 				)
 			InteractionNo += 1
 		
-		5:
+		4:
 			await dialogue_manager.speak(
 				"...", portrait_expressionless, 2
 			)

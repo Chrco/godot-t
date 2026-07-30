@@ -59,6 +59,7 @@ func start_dialogue(npc):
 	ChoiceContainer.hide()
 	current_npc = npc 
 	dialogue_data = npc.get_node("DialogueData")
+	DialogueText.text = ""
 	
 	visible = true
 	print("visible ", visible)

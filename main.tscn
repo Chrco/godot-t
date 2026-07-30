@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://156emsumjl2r"]
 
 [ext_resource type="PackedScene" uid="uid://cxc0f3sr4j53f" path="res://scenes/baseMap.tscn" id="1_1bvp3"]
+[ext_resource type="Script" uid="uid://cxu3d2ro5iduf" path="res://scripts/map_loader.gd" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://b1tv1s5h6fdfi" path="res://GUI/dialogue_ui.tscn" id="2_lquwl"]
 [ext_resource type="PackedScene" uid="uid://c36xdbakmjm7x" path="res://Player/Player.tscn" id="4_272bh"]
 [ext_resource type="Script" uid="uid://c53tg05htlije" path="res://player_gui.gd" id="4_lquwl"]
@@ -9,11 +10,24 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
 bg_color = Color(0.81, 0.314, 0.168, 1)
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lquwl"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_q1pjq"]
+sky_material = SubResource("ProceduralSkyMaterial_lquwl")
+
+[sub_resource type="Environment" id="Environment_7mycd"]
+background_mode = 2
+sky = SubResource("Sky_q1pjq")
+tonemap_mode = 2
+glow_enabled = true
+
 [node name="Main" type="Node" unique_id=1547316097]
+script = ExtResource("1_7mycd")
 
 [node name="CurrentMap" type="Node" parent="." unique_id=1271842197]
-
-[node name="base" parent="CurrentMap" unique_id=1174718061 instance=ExtResource("1_1bvp3")]
+unique_name_in_owner = true
 
 [node name="GUIs" type="CanvasLayer" parent="." unique_id=718057700]
 
@@ -21,6 +35,7 @@ bg_color = Color(0.81, 0.314, 0.168, 1)
 visible = false
 
 [node name="Player" parent="." unique_id=677210946 instance=ExtResource("4_272bh")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19999981, 0.5, 0)
 
 [node name="Audio" type="Node" parent="." unique_id=1383883064]
@@ -98,3 +113,9 @@ offset_bottom = -23.680008
 theme_override_font_sizes/font_size = 32
 text = "0
 "
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=152485105]
+environment = SubResource("Environment_7mycd")
+
+[node name="base" parent="." unique_id=1174718061 instance=ExtResource("1_1bvp3")]
+unique_name_in_owner = true

@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://da7jka7n5mvbr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1a2ex"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_6s481"]
+sky_material = SubResource("ProceduralSkyMaterial_1a2ex")
+
+[sub_resource type="Environment" id="Environment_fgkus"]
+background_mode = 2
+sky = SubResource("Sky_6s481")
+ambient_light_color = Color(0, 0, 0.99215686, 0.36078432)
+ambient_light_sky_contribution = 0.7
+ambient_light_energy = 4.94
+tonemap_mode = 2
+tonemap_exposure = 0.67
+glow_enabled = true
+
+[node name="TitleScreen" type="Node3D" unique_id=1773880210]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=795880616]
+transform = Transform3D(0.49999997, 0.43301272, 0.75, 0, 0.8660254, -0.5, -0.86602545, 0.24999999, 0.43301266, -2.3, 0, 0)
+
+[node name="Control" type="Control" parent="." unique_id=1874218417]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="Control" unique_id=1141599133]
+
+[node name="Camera3D" type="Camera3D" parent="Control/SubViewport" unique_id=652734553]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.5)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=806555706]
+environment = SubResource("Environment_fgkus")
